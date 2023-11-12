@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #ffc0cb, #add8e6);
+            background-size: 100% 100vh;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            margin-top: 100px;
+            width: 100%;
+            max-width: 1143px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+
+        .profile-picture {
+            width: 180px;
+            height: 180px;
+            border: 3px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .content {
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.514) 80%, rgba(255, 255, 255, 0.95));
+            padding: 20px;
+            padding-top: 120px;
+            padding-bottom: 100px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: fixed;
+            top: 100px;
+            bottom: 15px;
+            left: 5px;
+            right: 5px;
+        }
+
+        .box {
+            display: block;
+            background-color: #fff;
+            border: 2px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 100px;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .box:hover {
+            background-color: #f9f9f9;
+        }
+
+        .copy-bar {
+            background: linear-gradient(to bottom, #add8e6, #add8e6);
+            padding: 8px;
+            text-align: right;
+            margin-top: 15px;
+            /* Adicionado para evitar duplicatas */
+        }
+
+        .copy-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAe0lEQVR42mJw7g8ExQAJNkIvGRbhCOgVgkC5dAB2YHcwvYblE0QfAgDMTyoTpx0Ziw7EmdYhL8XB6kkQ6j7BFWWCQI5ZAZFshpKSY5FU5KDGkKqIpwm8TJpMhFO9pCC6kQA2uxPAi/BkpS+gAAAABJRU5ErkJggg==') no-repeat;
+            width: 70px;
+            height: 24px;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .code-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            background: none;
+            border: 2px solid #ddd;
+            max-width: 80vw;
+            overflow: auto;
+        }
+
+        pre code {
+            color: black;
+            background: none;
+            white-space: pre-wrap;
+        }
+
+        .modal {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 192, 203, 0.5);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            position: relative;
+            max-width: 80%;
+        }
+
+        .close {
+            color: #000;
+            font-size: 24px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        /* Adicionado para a caixa de código */
+        .box {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin-bottom: 35px;
+            padding: 10px;
+        }
+
+        .box img {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            left: 5px;
+            top: 0;
+            transform: translateY(-50%);
+        }
+
+        .box span {
+            margin-left: 65px;
+        }
+    </style>
+    <title>Página Responsiva</title>
+</head>
+
+<body>
+    <div class="container">
+        <img src="https://img.elo7.com.br/product/main/2D327C1/painel-redondo-cha-de-bebe-elefantinhos-aquarela-150x150cm-aquarela.jpg"
+            alt="Foto de Perfil" class="profile-picture">
+        <div class="content">
+            <br /><br />
+            <div style="text-align: center;">
+                Escolha um pacote:
+            </div><br /><br />
+            <a href="#" class="box">
+                <img src="https://www.araujo.com.br/dw/image/v2/BGTX_PRD/on/demandware.static/-/Sites-araujo-master/default/dw34a4c481/images/52766/7501001393977_1.jpg?sw=1000&sh=1000&sm=fit?sw=80&sh=80&sm=fit"
+                    alt="Pampers Supersec Tamanho M Pacote Hiper 52 Unidades">
+                <span><b>Pampers</b> M - 52 unid (R$ 60,99)</span>
+            </a>
+            <a href="#" class="box">
+                <img src="https://www.araujo.com.br/dw/image/v2/BGTX_PRD/on/demandware.static/-/Sites-araujo-master/default/dw55658f32/images/2469/07896012879825_2.jpg?sw=1000&sh=1000&sm=fit?sw=80&sh=80&sm=fit"
+                    alt="Imagem Ilustrativa 2">
+                <span><b>Mônica</b> M - 50 unid</b> (R$ 48,79)</span>
+            </a>
+            <a href="#" class="box">
+                <img src="https://www.araujo.com.br/dw/image/v2/BGTX_PRD/on/demandware.static/-/Sites-araujo-master/default/dwf8f5ef46/images/86327/07896007548408_1.jpg?sw=1000&sh=1000&sm=fit?sw=80&sh=80&sm=fit"
+                    alt="Imagem Ilustrativa 3">
+                <span><b>Huggies</b> M - 40 unid</b> (R$ 41,79)</span>
+            </a>
+            <a href="#" class="box">
+                <img src="https://www.araujo.com.br/dw/image/v2/BGTX_PRD/on/demandware.static/-/Sites-araujo-master/default/dwde87b6bf/images/30516/07896110011196_1.jpg?sw=1000&sh=1000&sm=fit?sw=80&sh=80&sm=fit"
+                    alt="Imagem Ilustrativa 4">
+                <span><b>Personal</b> M - 70 unid</b> (R$ 59,99)</span>
+            </a>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            hljs.initHighlightingOnLoad();
+
+            document.querySelectorAll('.box').forEach(function (box, index) {
+                box.addEventListener('click', function () {
+                    var codeBox = document.createElement('div');
+                    codeBox.classList.add('modal');
+                    codeBox.innerHTML = `
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <pre><code class="typescript">${getCodeSnippet(index)}</code></pre>
+            <div class="copy-bar">
+              <button class="copy-button" data-clipboard-target=".modal-content code">Copiar chave PIX</button>
+            </div>
+          </div>`;
+
+                    document.body.appendChild(codeBox);
+
+                    new ClipboardJS('.copy-button');
+
+                    var closeButton = codeBox.querySelector('.close');
+                    closeButton.addEventListener('click', function () {
+                        codeBox.remove();
+                    });
+                });
+            });
+
+            function getCodeSnippet(index) {
+                switch (index) {
+                    case 0:
+                        return '00020101021126900014br.gov.bcb.pix0136c1bc5ff6-1f0a-4f19-b75c-4ce79c9cfcfc0228Pacote Pampers M 52 unidades520400005303986540560.995802BR5920ADRIANO RAFAEL SILVA6013BELO HORIZONT62070503***6304D923';
+                    case 1:
+                        return '00020101021126970014br.gov.bcb.pix0136c1bc5ff6-1f0a-4f19-b75c-4ce79c9cfcfc0235Fralda Turma da Monica M 50 unidade520400005303986540548.795802BR5920ADRIANO RAFAEL SILVA6013BELO HORIZONT62070503***6304E4BA"';
+                    case 2:
+                        return '00020101021126940014br.gov.bcb.pix0136c1bc5ff6-1f0a-4f19-b75c-4ce79c9cfcfc0232Pacote fraldas Huggies M 40 unid520400005303986540541.795802BR5920ADRIANO RAFAEL SILVA6013BELO HORIZONT62070503***6304B876';
+                    case 3:
+                        return '00020101021126930014br.gov.bcb.pix0136c1bc5ff6-1f0a-4f19-b75c-4ce79c9cfcfc0231Pacote fraldas Personal 70 unid520400005303986540559.995802BR5920ADRIANO RAFAEL SILVA6013BELO HORIZONT62070503***63047672';
+                    default:
+                        return '';
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>
