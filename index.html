@@ -218,7 +218,7 @@
 
                 document.body.appendChild(codeBox);
 
-                new ClipboardJS('.copy-button');
+                var clipboard = new ClipboardJS('.copy-button');
 
                 var closeButton = codeBox.querySelector('.close');
                 closeButton.addEventListener('click', function () {
@@ -227,14 +227,14 @@
 
                 var copyButton = codeBox.querySelector('.copy-button');
                 copyButton.addEventListener('click', function () {
-                    codeBox.remove(); // Fechar o primeiro modal
+                    clipboard.destroy(); // Destruir a instância ClipboardJS antes de remover o modal
 
                     var successBox = document.createElement('div');
                     successBox.classList.add('modal');
                     successBox.innerHTML = `
               <div class="modal-content">
                 <span class="close">&times;</span>
-                <p><b>PARABÉNS!!!</b> <br> Você tem uma chave PIX COPIA E COLA. <br><br>Agora abra o app do seu banco e cole esse código de pagamento! 😉</p>
+                <p>Parabéns, você tem uma chave 'PIX COPIA E COLA'. Agora basta abrir o app do seu banco e colar esse código de pagamento!</p>
                 <button class="ok-button">OK</button>
               </div>`;
 
