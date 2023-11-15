@@ -199,7 +199,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
-<script>
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
             hljs.initHighlightingOnLoad();
 
@@ -218,40 +218,45 @@
 
                     document.body.appendChild(codeBox);
 
-                    new ClipboardJS('.copy-button');
+                    new ClipboardJS('.copy-button').on('success', function (e) {
+                        // Após o código ser copiado com sucesso, exibe o segundo modal
+                        showCongratsModal();
+                    });
 
                     var closeButton = codeBox.querySelector('.close');
                     closeButton.addEventListener('click', function () {
                         codeBox.remove();
                     });
-
-                    // Adicionado: Evento após a cópia
-                    document.addEventListener('copy', function () {
-                        codeBox.remove(); // Fecha o modal atual
-                        // Abre novo modal com mensagem de parabéns
-                        var congratsModal = document.createElement('div');
-                        congratsModal.classList.add('modal');
-                        congratsModal.innerHTML = `
-              <div class="modal-content">
-                <span class="close">&times;</span>
-                <p><b>PARABÉNS!!!</b> <br> Você tem uma chave PIX COPIA E COLA. <br><br>Agora abra o app do seu banco e cole esse código de pagamento! 😉</p>
-                <button class="ok-button">OK</button>
-              </div>`;
-                        document.body.appendChild(congratsModal);
-
-                        var okButton = congratsModal.querySelector('.ok-button');
-                        okButton.addEventListener('click', function () {
-                            congratsModal.remove();
-                        });
-                    });
                 });
             });
 
             function getCodeSnippet(index) {
-                // Restante da função permanece o mesmo
+                // O restante da função getCodeSnippet permanece inalterado
+            }
+
+            function showCongratsModal() {
+                var congratsModal = document.createElement('div');
+                congratsModal.classList.add('modal');
+                congratsModal.innerHTML = `
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <p><b>PARABÉNS!!!</b> <br> Você tem uma chave PIX COPIA E COLA. <br><br>Agora abra o app do seu banco e cole esse código de pagamento! 😉</p>
+            <button class="ok-button" onclick="closeCongratsModal()">OK</button>
+          </div>`;
+
+                document.body.appendChild(congratsModal);
+
+                var closeButton = congratsModal.querySelector('.close');
+                closeButton.addEventListener('click', function () {
+                    congratsModal.remove();
+                });
+            }
+
+            function closeCongratsModal() {
+                // Adicione aqui qualquer ação que você queira realizar ao fechar o modal de parabéns
+                document.querySelector('.modal').remove();
             }
         });
-
     </script>
 </body>
 
