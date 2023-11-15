@@ -199,15 +199,15 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            hljs.initHighlightingOnLoad();
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        hljs.initHighlightingOnLoad();
 
-            document.querySelectorAll('.box').forEach(function (box, index) {
-                box.addEventListener('click', function () {
-                    var codeBox = document.createElement('div');
-                    codeBox.classList.add('modal');
-                    codeBox.innerHTML = `
+        document.querySelectorAll('.box').forEach(function (box, index) {
+            box.addEventListener('click', function () {
+                var codeBox = document.createElement('div');
+                codeBox.classList.add('modal');
+                codeBox.innerHTML = `
           <div class="modal-content">
             <span class="close">&times;</span>
             <pre><code class="typescript">${getCodeSnippet(index)}</code></pre>
@@ -216,48 +216,57 @@
             </div>
           </div>`;
 
-                    document.body.appendChild(codeBox);
+                document.body.appendChild(codeBox);
 
-                    new ClipboardJS('.copy-button').on('success', function (e) {
-                        // Após o código ser copiado com sucesso, exibe o segundo modal
-                        showCongratsModal();
-                    });
+                new ClipboardJS('.copy-button').on('success', function (e) {
+                    showCongratsModal();
+                });
 
-                    var closeButton = codeBox.querySelector('.close');
-                    closeButton.addEventListener('click', function () {
-                        codeBox.remove();
-                    });
+                var closeButton = codeBox.querySelector('.close');
+                closeButton.addEventListener('click', function () {
+                    codeBox.remove();
                 });
             });
+        });
 
-            function getCodeSnippet(index) {
-                // O restante da função getCodeSnippet permanece inalterado
+        function getCodeSnippet(index) {
+            switch (index) {
+                case 0:
+                    return '00020101021126900014br.gov.bcb.pix0136c1bc5ff6-1f0a-4f19-b75c-4ce79c9cfcfc0228Pacote Pampers M 52 unidades520400005303986540560.995802BR5920ADRIANO RAFAEL SILVA6013BELO HORIZONT62070503***6304D923';
+                case 1:
+                    return '00020101021126970014br.gov.bcb.pix0136c1bc5ff6-1f0a-4f19-b75c-4ce79c9cfcfc0235Fralda Turma da Monica M 50 unidade520400005303986540548.795802BR5920ADRIANO RAFAEL SILVA6013BELO HORIZONT62070503***6304E4BA"';
+                case 2:
+                    return '00020101021126940014br.gov.bcb.pix0136c1bc5ff6-1f0a-4f19-b75c-4ce79c9cfcfc0232Pacote fraldas Huggies M 40 unid520400005303986540541.795802BR5920ADRIANO RAFAEL SILVA6013BELO HORIZONT62070503***6304B876';
+                case 3:
+                    return '00020101021126930014br.gov.bcb.pix0136c1bc5ff6-1f0a-4f19-b75c-4ce79c9cfcfc0231Pacote fraldas Personal 70 unid520400005303986540559.995802BR5920ADRIANO RAFAEL SILVA6013BELO HORIZONT62070503***63047672';
+                default:
+                    return '';
             }
+        }
 
-            function showCongratsModal() {
-                var congratsModal = document.createElement('div');
-                congratsModal.classList.add('modal');
-                congratsModal.innerHTML = `
+        function showCongratsModal() {
+            var congratsModal = document.createElement('div');
+            congratsModal.classList.add('modal');
+            congratsModal.innerHTML = `
           <div class="modal-content">
-            <span class="close">&times;</span>
+            <span class="close" onclick="closeCongratsModal()">&times;</span>
             <p><b>PARABÉNS!!!</b> <br> Você tem uma chave PIX COPIA E COLA. <br><br>Agora abra o app do seu banco e cole esse código de pagamento! 😉</p>
             <button class="ok-button" onclick="closeCongratsModal()">OK</button>
           </div>`;
 
-                document.body.appendChild(congratsModal);
+            document.body.appendChild(congratsModal);
 
-                var closeButton = congratsModal.querySelector('.close');
-                closeButton.addEventListener('click', function () {
-                    congratsModal.remove();
-                });
-            }
+            var closeButton = congratsModal.querySelector('.close');
+            closeButton.addEventListener('click', function () {
+                congratsModal.remove();
+            });
+        }
 
-            function closeCongratsModal() {
-                // Adicione aqui qualquer ação que você queira realizar ao fechar o modal de parabéns
-                document.querySelector('.modal').remove();
-            }
-        });
-    </script>
+        function closeCongratsModal() {
+            document.querySelector('.modal').remove();
+        }
+    });
+</script>
 </body>
 
 </html>
