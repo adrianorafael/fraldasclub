@@ -209,7 +209,7 @@
                 codeBox.classList.add('modal');
                 codeBox.innerHTML = `
           <div class="modal-content">
-            <span class="close">&times;</span>
+            <span class="close" onclick="closeAllModals()">&times;</span>
             <pre><code class="typescript">${getCodeSnippet(index)}</code></pre>
             <div class="copy-bar" style="text-align: center;">
               <button class="copy-button" data-clipboard-target=".modal-content code">Copiar chave PIX</button>
@@ -220,11 +220,6 @@
 
                 new ClipboardJS('.copy-button').on('success', function (e) {
                     showCongratsModal();
-                });
-
-                var closeButton = codeBox.querySelector('.close');
-                closeButton.addEventListener('click', function () {
-                    codeBox.remove();
                 });
             });
         });
@@ -249,21 +244,19 @@
             congratsModal.classList.add('modal');
             congratsModal.innerHTML = `
           <div class="modal-content">
-            <span class="close" onclick="closeCongratsModal()">&times;</span>
+            <span class="close" onclick="closeAllModals()">&times;</span>
             <p><b>PARABÉNS!!!</b> <br> Você tem uma chave PIX COPIA E COLA. <br><br>Agora abra o app do seu banco e cole esse código de pagamento! 😉</p>
-            <button class="ok-button" onclick="closeCongratsModal()">OK</button>
+            <button class="ok-button" onclick="closeAllModals()">OK</button>
           </div>`;
 
             document.body.appendChild(congratsModal);
-
-            var closeButton = congratsModal.querySelector('.close');
-            closeButton.addEventListener('click', function () {
-                congratsModal.remove();
-            });
         }
 
-        function closeCongratsModal() {
-            document.querySelector('.modal').remove();
+        function closeAllModals() {
+            var modals = document.querySelectorAll('.modal');
+            modals.forEach(function (modal) {
+                modal.remove();
+            });
         }
     });
 </script>
