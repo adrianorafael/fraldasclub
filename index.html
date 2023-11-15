@@ -199,15 +199,15 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        hljs.initHighlightingOnLoad();
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            hljs.initHighlightingOnLoad();
 
-        document.querySelectorAll('.box').forEach(function (box, index) {
-            box.addEventListener('click', function () {
-                var codeBox = document.createElement('div');
-                codeBox.classList.add('modal');
-                codeBox.innerHTML = `
+            document.querySelectorAll('.box').forEach(function (box, index) {
+                box.addEventListener('click', function () {
+                    var codeBox = document.createElement('div');
+                    codeBox.classList.add('modal');
+                    codeBox.innerHTML = `
           <div class="modal-content">
             <span class="close">&times;</span>
             <pre><code class="typescript">${getCodeSnippet(index)}</code></pre>
@@ -216,54 +216,58 @@
             </div>
           </div>`;
 
-                document.body.appendChild(codeBox);
+                    document.body.appendChild(codeBox);
 
-                var clipboard = new ClipboardJS('.copy-button');
+                    new ClipboardJS('.copy-button');
 
-                var closeButton = codeBox.querySelector('.close');
-                closeButton.addEventListener('click', function () {
-                    codeBox.remove();
-                });
+                    var closeButton = codeBox.querySelector('.close');
+                    closeButton.addEventListener('click', function () {
+                        codeBox.remove();
+                    });
 
-                var copyButton = codeBox.querySelector('.copy-button');
-                copyButton.addEventListener('click', function () {
-                    clipboard.destroy(); // Destruir a instância ClipboardJS antes de remover o modal
+                    var copyButton = codeBox.querySelector('.copy-button');
+                    copyButton.addEventListener('click', function () {
+                        // Copiar a chave PIX
 
-                    var successBox = document.createElement('div');
-                    successBox.classList.add('modal');
-                    successBox.innerHTML = `
+                        // Fechar o modal atual
+                        codeBox.remove();
+
+                        // Abrir novo modal com a mensagem de parabéns
+                        var congratsModal = document.createElement('div');
+                        congratsModal.classList.add('modal');
+                        congratsModal.innerHTML = `
               <div class="modal-content">
                 <span class="close">&times;</span>
-                <p>Parabéns, você tem uma chave 'PIX COPIA E COLA'. Agora basta abrir o app do seu banco e colar esse código de pagamento!</p>
+                <p><b>PARABÉNS!!!</b> <br> Você tem uma chave PIX COPIA E COLA. <br><br>Agora abra o app do seu banco e cole esse código de pagamento! 😉</p>
                 <button class="ok-button">OK</button>
               </div>`;
 
-                    document.body.appendChild(successBox);
+                        document.body.appendChild(congratsModal);
 
-                    var okButton = successBox.querySelector('.ok-button');
-                    okButton.addEventListener('click', function () {
-                        successBox.remove();
+                        var okButton = congratsModal.querySelector('.ok-button');
+                        okButton.addEventListener('click', function () {
+                            congratsModal.remove();
+                        });
                     });
                 });
             });
-        });
 
-        function getCodeSnippet(index) {
-            switch (index) {
-                case 0:
-                    return '00020101021126900014br.gov.bcb.pix0136c1bc5ff6-1f0a-4f19-b75c-4ce79c9cfcfc0228Pacote Pampers M 52 unidades520400005303986540560.995802BR5920ADRIANO RAFAEL SILVA6013BELO HORIZONT62070503***6304D923';
-                case 1:
-                    return '00020101021126970014br.gov.bcb.pix0136c1bc5ff6-1f0a-4f19-b75c-4ce79c9cfcfc0235Fralda Turma da Monica M 50 unidade520400005303986540548.795802BR5920ADRIANO RAFAEL SILVA6013BELO HORIZONT62070503***6304E4BA"';
-                case 2:
-                    return '00020101021126940014br.gov.bcb.pix0136c1bc5ff6-1f0a-4f19-b75c-4ce79c9cfcfc0232Pacote fraldas Huggies M 40 unid520400005303986540541.795802BR5920ADRIANO RAFAEL SILVA6013BELO HORIZONT62070503***6304B876';
-                case 3:
-                    return '00020101021126930014br.gov.bcb.pix0136c1bc5ff6-1f0a-4f19-b75c-4ce79c9cfcfc0231Pacote fraldas Personal 70 unid520400005303986540559.995802BR5920ADRIANO RAFAEL SILVA6013BELO HORIZONT62070503***63047672';
-                default:
-                    return '';
+            function getCodeSnippet(index) {
+                switch (index) {
+                    case 0:
+                        return '00020101021126900014br.gov.bcb.pix0136c1bc5ff6-1f0a-4f19-b75c-4ce79c9cfcfc0228Pacote Pampers M 52 unidades520400005303986540560.995802BR5920ADRIANO RAFAEL SILVA6013BELO HORIZONT62070503***6304D923';
+                    case 1:
+                        return '00020101021126970014br.gov.bcb.pix0136c1bc5ff6-1f0a-4f19-b75c-4ce79c9cfcfc0235Fralda Turma da Monica M 50 unidade520400005303986540548.795802BR5920ADRIANO RAFAEL SILVA6013BELO HORIZONT62070503***6304E4BA"';
+                    case 2:
+                        return '00020101021126940014br.gov.bcb.pix0136c1bc5ff6-1f0a-4f19-b75c-4ce79c9cfcfc0232Pacote fraldas Huggies M 40 unid520400005303986540541.795802BR5920ADRIANO RAFAEL SILVA6013BELO HORIZONT62070503***6304B876';
+                    case 3:
+                        return '00020101021126930014br.gov.bcb.pix0136c1bc5ff6-1f0a-4f19-b75c-4ce79c9cfcfc0231Pacote fraldas Personal 70 unid520400005303986540559.995802BR5920ADRIANO RAFAEL SILVA6013BELO HORIZONT62070503***63047672';
+                    default:
+                        return '';
+                }
             }
-        }
-    });
-</script>
+        });
+    </script>
 </body>
 
 </html>
